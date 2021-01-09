@@ -14,8 +14,10 @@ console.log(headerValue);
 
 // start program
 
+// This function produces a class for Cellphone with getters and other properties
 function Cellphone(manufacturer, model, color, price) {
 
+    // Properties
     this.manufacturer = manufacturer;
 
     this.model = model;
@@ -24,14 +26,17 @@ function Cellphone(manufacturer, model, color, price) {
 
     this.price = price;
 
+    // Gets price
     this.getPrice = function(){
         return this.price
     };
     
+    // Gets model
     this.getModel = function(){
         return this.model
     };
 
+    // Uses getters and other properties to output the details of the Cellphone function 
     this.getDetails = function() {
     
     return this.getPrice() + " Dollar " + this.manufacturer + " " +  this.getModel() + " in " + this.color;
@@ -40,8 +45,10 @@ function Cellphone(manufacturer, model, color, price) {
     
     }
 
+    // Creates a new Cellphone function class with new properties
     var iphone = new Cellphone("Apple", "iPhone Pro", "Red", 1200)
     
+    // Outputs new class details with get details getter
     console.log(iphone.getDetails())
 
     // end program
