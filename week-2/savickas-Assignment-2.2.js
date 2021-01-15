@@ -1,6 +1,6 @@
 /*
 ============================================
-; Title:  Exercise 1.3 - Class Refresher
+; Title:  Exercise 2.2 - Prototypes
 ; Author: Grayton Savickas
 ; Date:   15 Jan 2021
 ; Modified By: 
@@ -9,7 +9,7 @@
 */
 const header = require('../week-1/Savickas-header')
 // Tests the import of header function works
-var headerValue = header.display("Grayton", "Savickas", "Exercise 1.3 - Class Refresher")
+var headerValue = header.display("Grayton", "Savickas", "Exercise 2.2 - Prototypes")
 console.log(headerValue);
 /*
  Expected output:
