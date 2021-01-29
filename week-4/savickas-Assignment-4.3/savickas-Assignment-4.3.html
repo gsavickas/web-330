@@ -1,10 +1,10 @@
 <!--
 ============================================
-; Title:  Exercise 4.2 - HTTP GET and POST Operations
+; Title:  Exercise 4.3 - HTTP PUT and DELETE operations
 ; Author: Grayton Savickas
-; Date:   17 Jan 2021
+; Date:   29 Jan 2021
 ; Modified By:
-; Description: Using HTTP GET and POST Operations
+; Description: Using HTTP PUT and DELETE operations
 ; Attribution: Evan Hahn and Evan M. Hahn (2016). Express in Action. Manning Publication
 ; jQuery API Documentation. https://api.jquery.com/jQuery.ajax/
 ;===========================================
@@ -15,7 +15,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Exercise 4.2 - HTTP GET and POST Operations</title>
+    <title>Exercise 4.3 - HTTP PUT and DELETE operations</title>
 
     <!-- jQuery reference -->
     <script
@@ -27,9 +27,9 @@
 </head>
 <body>
 
-  <h4>HTTP GET Request</h4>
+  <h4>HTTP DELETE Request</h4>
 
-  <button id="get1">Get Random Dogo Breed</button>
+  <button id="delete1">Delete Security User</button>
 
 
 
@@ -37,17 +37,21 @@
   // calls jQuery
   $(function() {
 
-    // grabs html button with id of #get1 and listens for a click event
-    $("#get1").click(function(){
+    $('#delete1').click(function(){
+      // Use ajax to create a delete response to the specified url
+      $.ajax({
+        url: 'http://httpbin.org/delete',
+        dataType: 'json',
+        type: 'DELETE',
+        data: {username: 'superAdmin', password: 'superSecret', email: 'notmy@email.com'},
+        success: function(data, status){
+          console.log('Username: ' + data.form.username + '\nPassword: ' + data.form.password +  '\nEmail: ' + data.form.email + '\nStatus: ' + status);
+        }
 
-      // performs a GET request to get a random dog breed JSON
-      $.get('https://dog.ceo/api/breeds/image/random', function(data, status){
-
-        // outputs the JSON to the console with .stringify(data) as well as the status
-        console.log('Data: ' + JSON.stringify(data) + '\nStatus: ' + status);
       });
 
     });
+
   });
 </script>
 </body>
