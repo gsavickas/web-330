@@ -7,7 +7,7 @@
 ; Description: Tests out using Singleton Pattern
 ;===========================================
 */
-const header = require('../../week-1/Savickas-header')
+const header = require('../../../../web340/web-340/week-1/Savickas-header')
 // Tests the import of header function works
 var headerValue = header.display("Grayton", "Savickas", "Exercise 3.3 - Singleton Pattern")
 console.log(headerValue);
