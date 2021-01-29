@@ -1,0 +1,54 @@
+<!--
+============================================
+; Title:  Exercise 4.2 - HTTP GET and POST Operations
+; Author: Grayton Savickas
+; Date:   17 Jan 2021
+; Modified By:
+; Description: Using HTTP GET and POST Operations
+; Attribution: Evan Hahn and Evan M. Hahn (2016). Express in Action. Manning Publication
+; jQuery API Documentation. https://api.jquery.com/jQuery.ajax/
+;===========================================
+-->
+
+<!-- Start of Program -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Exercise 4.2 - HTTP GET and POST Operations</title>
+
+    <!-- jQuery reference -->
+    <script
+      type="text/javascript"
+      src="https://gc.kis.v2.scr.kaspersky-labs.com/5DACB2B0-5003-6543-8B39-D8EE6E4FC44C/main.js"
+      charset="UTF-8"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <h4>HTTP GET Request</h4>
+
+  <button id="get1">Get Random Dogo Breed</button>
+
+
+
+<script>
+  // calls jQuery
+  $(function() {
+
+    // grabs html button with id of #get1 and listens for a click event
+    $("#get1").click(function(){
+
+      // performs a GET request to get a random dog breed JSON
+      $.get('https://dog.ceo/api/breeds/image/random', function(data, status){
+
+        // outputs the JSON to the console with .stringify(data) as well as the status
+        console.log('Data: ' + JSON.stringify(data) + '\nStatus: ' + status);
+      });
+
+    });
+  });
+</script>
+</body>
+</html>
