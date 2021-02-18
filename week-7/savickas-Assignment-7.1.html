@@ -1,0 +1,70 @@
+<!--
+============================================
+; Title:  Exercise 7.2 - Knockout.js
+; Author: Grayton Savickas
+; Date:   14 Feb 2021
+; Modified By:
+; Description: Using Knockout.js
+; Attribution: Evan Hahn and Evan M. Hahn (2016). Express in Action. Manning Publication
+; jQuery API Documentation. https://api.jquery.com/jQuery.ajax/
+;===========================================
+-->
+
+<!-- Start of Program -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savickas Assignment 7.1</title>
+  <script src="../knockout-3.5.1.js"></script>
+</head>
+<body>
+
+  <div data-bind="bindingExample: status">
+    <span data-bind="text: Name">Now you see me!</span>
+  </div>
+
+  <div data-bind="foreach: userAccounts">
+    <span data-bind="text: Id"></span>
+    <span data-bind="text: Name"></span>
+  </div>
+
+  <script>
+  // UserAccount model
+  function userAccount(id, name){
+    this.Id = id;
+    this.Name = name;
+  }
+
+  // UserAccount view model with an array of users
+  var userInfoViewModel = new function(){
+    this.userAccounts = ko.observableArray([
+      new userAccount(12345, "Bobby"),
+      new userAccount(67891, "Joe")
+    ])
+  }
+
+  // The observer key is bindingExample
+      ko.bindingHandler.bindingExample = {
+        // code that only needs to be executed once goes under init function
+        init: function(element, valueAccessor, allBindings, viewModel, bindingContext){
+
+        },
+        // code that updates over and over again is placed here
+        update: function(element, valueAccessor, allBindings, viewModel, bindingContext){
+          // "valueAccessor" = JavaScript function used to get the current model property
+          var value = ko.unwrap(valueAccessor());
+          if (value.toLowerCase() = "bobby"){
+          completedHtml: "<h4>Dang it Bobby!</h4>"
+          }
+          else {
+            completedHtml: "<h4>Yep</h4>";
+          }
+        }
+      };
+
+  </script>
+</body>
+</html>

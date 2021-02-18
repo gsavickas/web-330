@@ -1,0 +1,60 @@
+<!--
+============================================
+; Title:  Exercise 7.2 - Knockout.js
+; Author: Grayton Savickas
+; Date:   14 Feb 2021
+; Modified By:
+; Description: Using Knockout.js
+; Attribution: Evan Hahn and Evan M. Hahn (2016). Express in Action. Manning Publication
+; jQuery API Documentation. https://api.jquery.com/jQuery.ajax/
+;===========================================
+-->
+<!-- Start of Program -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savickas Assignment 7.1</title>
+  <script src="../knockout-3.5.1.js"></script>
+</head>
+<body>
+
+  <form data-bind="submit: addItem">
+    New item:
+    <input data-bind='displayBinding: items, value: itemToAdd, valueUpdate: "afterkeydown"' />
+    <button type="submit" data-bind="enable: itemToAdd().length > 0">Add</button>
+    <p>Your items:</p>
+    <select multiple="multiple" width="50" data-bind="options: items, displayBinding: items"> </select>
+  </form>
+
+
+  <script>
+  var SimpleListModel = function(items) {
+    this.items = ko.observableArray(items);
+    this.itemToAdd = ko.observable("");
+    this.addItem = function() {
+        if (this.itemToAdd() != "") {
+            this.items.push(this.itemToAdd()); // Adds the item. Writing to the "items" observableArray causes any associated UI to update.
+            this.itemToAdd(""); // Clears the text box, because it's bound to the "itemToAdd" observable
+        }
+    }.bind(this);  // Ensure that "this" is always this view model
+  };
+
+
+  ko.applyBindings(new SimpleListModel(["Alpha", "Beta", "Gamma", "Pizza"]));
+  // ko.bindingHandlers.displayBinding(SimpleListModel);
+
+  ko.bindingHandlers.displayBinding = {
+    update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+      var value = ko.unwrap(valueAccessor());
+      if (value.toLowerCase() = "pizza"){
+        alert('Someone said pizza!');
+      }
+    }
+};
+
+  </script>
+</body>
+</html>

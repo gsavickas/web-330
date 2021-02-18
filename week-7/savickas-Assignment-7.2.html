@@ -1,0 +1,103 @@
+<!--
+============================================
+; Title:  Exercise 7.2 - Knockout.js
+; Author: Grayton Savickas
+; Date:   14 Feb 2021
+; Modified By:
+; Description: Using Knockout.js
+; Attribution: Evan Hahn and Evan M. Hahn (2016). Express in Action. Manning Publication
+; jQuery API Documentation. https://api.jquery.com/jQuery.ajax/
+;===========================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knockout 'if' Binding</title>
+  <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+      integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+      crossorigin="anonymous"
+    />
+  <script src="../knockout-3.5.1.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact Us</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div role="main" class="container">
+    <br /><br />
+
+      <h2>Person View Model</h2>
+
+      <div class="form-group">
+        <label for="fName">First Name: </label>
+          <input
+            type="text"
+            data-bind="value: firstName"
+            class="form-control"
+            id="fName"
+            />
+      </div>
+
+      <div data-bind="if: displayFirstName">
+        <div class="form-group">
+          <label for="lastName">Last Name: </label>
+            <input
+              type="text"
+              data-bind="value: lastName"
+              class="form-control"
+              id="lName"
+              />
+        </div>
+      </div>
+      <br />
+
+      <div data-bind="if: displayFirstName">
+        <h2>
+          <span
+            id="userFullName"
+            class="alert-success"
+            data-bind="text: displayFullName"
+          ></span>
+        </h2>
+
+      </div>
+
+    <br />
+  </div>
+
+  <script>
+
+      // My new first name function
+      function fullNameModel(){
+        this.firstName = ko.observable("");
+        this.lastName = ko.observable("");
+
+        this.displayFirstName = ko.pureComputed(function(){
+          return this.firstName();
+        }, this);
+
+        this.displayFullName = ko.pureComputed(function(){
+          return this.firstName() + " by " + this.lastName();
+        }, this);
+      };
+
+    ko.applyBindings(new fullNameModel());
+  </script>
+</body>
+</html>
