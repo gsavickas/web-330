@@ -1,0 +1,67 @@
+<!-- References: BestDotNetTraining 2016: https://www.youtube.com/watch?v=qQxD1DNAOPc -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>custom Knockout Example</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="../../knockout-3.5.1.js"></script>
+</head>
+<body>
+  <!-- This is an example of a bank account statement generated with custom knockout display bindings -->
+  <table data-bind="foreach: Accounts">
+    <tr data-bind="displayStatus: Status">
+      <td data-bind="text:Id"></td>
+      <td data-bind="text:Name"></td>
+      <td data-bind="text:Balance"></td>
+    </tr>
+  </table>
+  <script>
+    function Account(id, name, balance, status){
+      this. Id = id;
+      this.Name = name;
+      this.Balance = ko.observable(balance);
+      // Shows the status of the account Ex. Active
+      this.Status = status;
+    }
+    var myAccountViewModel = new function(){
+      this.Accounts = ko.observableArray([
+        new Account(1, "A1", 10000, "Active"),
+        new Account(2, "A2", 20000, "Inactive"),
+        new Account(3, "A3", 30000, "Disabled"),
+        new Account(4, "A4", 40000, "Inactive"),
+        new Account(5, "A5", 50000, "Active")
+      ])
+    }
+    // This observer will alter the style of the account entries based on their status keys
+    ko.bindingHandlers.displayStatus = {
+      init:function(element, valueAccessor, allBindings, viewModel, bindingContext){
+
+      },
+      update:function(element, valueAccessor, allBindings, viewModel, bindingContext){
+        var value = ko.unwrap(valueAccessor());
+        switch(value.toLowerCase()){
+          case "inactive":
+            element.style['color'] ='red'
+            break;
+          case "active":
+            element.style['color'] ='green'
+            break;
+          case "disabled":
+            element.style['text-decoration'] ='line-through'
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+
+    ko.applyBindings(myAccountViewModel)
+  </script>
+</body>
+</html>

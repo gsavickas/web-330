@@ -23,16 +23,17 @@
 
   <form data-bind="submit: addItem">
     New item:
-    <input data-bind='displayBinding: items, value: itemToAdd, valueUpdate: "afterkeydown"' />
+    <input data-bind='value: itemToAdd, displayBinding: "itemToAdd", valueUpdate: "afterkeydown"' />
     <button type="submit" data-bind="enable: itemToAdd().length > 0">Add</button>
     <p>Your items:</p>
-    <select multiple="multiple" width="50" data-bind="options: items, displayBinding: items"> </select>
+    <select multiple="multiple" width="50" data-bind="options: items"> </select>
   </form>
 
 
   <script>
   var SimpleListModel = function(items) {
     this.items = ko.observableArray(items);
+    console.log("it is working");
     this.itemToAdd = ko.observable("");
     this.addItem = function() {
         if (this.itemToAdd() != "") {
@@ -42,18 +43,28 @@
     }.bind(this);  // Ensure that "this" is always this view model
   };
 
+  var displayBinding = function(itemToAdd){
+    this.itemToAdd = ko.observable("");
+  };
 
   ko.applyBindings(new SimpleListModel(["Alpha", "Beta", "Gamma", "Pizza"]));
   // ko.bindingHandlers.displayBinding(SimpleListModel);
 
   ko.bindingHandlers.displayBinding = {
+    init:function(element, valueAccessor, allBindings, viewModel, bindingContext){
+
+},
     update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
       var value = ko.unwrap(valueAccessor());
-      if (value.toLowerCase() = "pizza"){
+      console.log("it is working");
+      if (this.value.toLowerCase() === "pizza"){
         alert('Someone said pizza!');
       }
     }
 };
+
+  // ko.applyBindings(new displayBindingModel());
+
 
   </script>
 </body>
