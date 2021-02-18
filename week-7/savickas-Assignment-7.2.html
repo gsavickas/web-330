@@ -93,7 +93,7 @@
         }, this);
 
         this.displayFullName = ko.pureComputed(function(){
-          return this.firstName() + " by " + this.lastName();
+          return this.firstName() + " " + this.lastName();
         }, this);
       };
 
