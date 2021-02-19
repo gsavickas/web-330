@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+   <head>
+      <title>KnockoutJS attribute binding</title>
+      <script src = "https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"
+         type = "text/javascript"></script>
+   </head>
+
+   <body>
+      <a data-bind = "attr: { href: courseUrl}">
+         Click here for free online tutorials and courses.
+      </a>
+
+      <script type = "text/javascript">
+         function AppViewModel() {
+            this.courseUrl = ("http://tutorialspoint.com/");
+         };
+
+         var vm = new AppViewModel();
+         ko.applyBindings(vm);
+      </script>
+
+   </body>
+</html>
