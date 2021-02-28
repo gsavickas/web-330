@@ -2,7 +2,7 @@
 ============================================
 ; Title:  Exercise 8.2 - CR Operations
 ; Author: Grayton Savickas
-; Date:   14 Feb 2021
+; Date:   28 Feb 2021
 ; Modified By:
 ; Description: Using CR Operations
 ; Attribution: Evan Hahn and Evan M. Hahn (2016). Express in Action. Manning Publication
@@ -50,6 +50,8 @@
 
         </div>
       </div>
+
+        <!-- This -->
         <div class="row">
           <div class="col-sm-6">
             <div class="card card-inverse" style="background-color: #333; border-color:
@@ -78,12 +80,14 @@
             </div>
           </div>
       </div>
+      <!-- This -->
+
      </div>
 
      <script>
       function EmployeeListViewModel() {
         this.employeeToAdd = ko.observable("");
-        this.List = ko.observableArray(["Manny", "Gorgon"]);
+        this.List = ko.observableArray(["Mandy", "Gorgon"]);
         this.error = ko.observable("");
         this.add = function () {
           if ((this.employeeToAdd() !== "") && (this.List.indexOf(this.employeeToAdd()) < 0)) {
@@ -96,6 +100,7 @@
             this.employeeToAdd("");
         }
       }
+
       ko.applyBindings(new EmployeeListViewModel());
      </script>
 

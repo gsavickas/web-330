@@ -2,7 +2,7 @@
 ============================================
 ; Title:  Exercise 8.3 - UD Operations
 ; Author: Grayton Savickas
-; Date:   14 Feb 2021
+; Date:   28 Feb 2021
 ; Modified By:
 ; Description: Using UD Operations
 ; Attribution: Evan Hahn and Evan M. Hahn (2016). Express in Action. Manning Publication
@@ -101,7 +101,7 @@
           <div class="card card-inverse" style="background-color: #333; border-color:
           #333; color: white;">
           <div class="card-block p-3">
-            <h3 class="card-title">Grocery List Item</h3>
+            <h3 class="card-title">Employee List Item</h3>
             <div class="card-text">
               <div class="form-group">
                 <label for="txtName">Name: </label>
@@ -135,7 +135,7 @@
         new Employee(5, "Lynn")
       ];
 
-      function ShoppingCartViewModel() {
+      function EmployeeListViewModel() {
 
         var self = this;
         self.error = ko.observable("");
@@ -165,7 +165,7 @@
         }
       }
 
-      ko.applyBindings(new ShoppingCartViewModel());
+      ko.applyBindings(new EmployeeListViewModel());
 
     </script>
   </body>
